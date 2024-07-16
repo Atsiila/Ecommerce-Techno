@@ -65,8 +65,9 @@
                             <form action="{{ route('cart.add', $produk->id) }}" method="POST">
                                 <div class="product-details-action">
                                     @csrf
+                                    
                                     <input type="hidden" name="qty" value="1" class="quantity-input"> {{--qty wak--}} {{--anomali pernah kesini--}}
-                                    <button class="btn-product btn-info"><span>Tambah ke Keranjang</span></button>
+                                    <button  class="btn-product btn-info"><span>Tambah ke Keranjang</span></button>
                                 </div><!-- End .product-details-action -->
                             </form>
                             @endguest

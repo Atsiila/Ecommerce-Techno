@@ -114,16 +114,11 @@
                         </button>
                         <div class="dropdown-menu no-border" aria-labelledby="dropdownMenuButton">
                             @guest
-                                <button class="dropdown-item" onclick="location.href='wishlist.html'">
-                                    <i class="fal fa-heart"></i> Wishlist
-                                </button>
+
                                 <button class="dropdown-item" onclick="location.href='{{ url('login') }}'">
                                     <i class="fal fa-sign-in-alt"></i> Login
                                 </button>
                             @else
-                                <button class="dropdown-item" onclick="location.href='{{ url('about') }}'">
-                                    <i class="fal fa-user"></i> Profile
-                                </button>
                                 <hr>
                                 <button class="dropdown-item" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
                                     <i class="fal fa-sign-out-alt"></i> Logout

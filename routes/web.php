@@ -5,6 +5,8 @@ use App\Http\Controllers\FrontController;
 use App\Http\Controllers\KategorisController;
 use App\Htpp\Controllers\ProdukController;
 use App\Http\Controllers\CartController;
+use App\Http\Controllers\CheckoutController;
+
 use App\Http\Middleware\IsAdmin;
 
 // Route::get('/', function () {
@@ -42,6 +44,11 @@ Route::post('/cart/update/{id}', [CartController::class, 'update'])->name('cart.
 Route::delete('/cart/delete/{id}', [CartController::class, 'delete'])->name('cart.delete');
 Route::delete('/cart/clear', [CartController::class, 'clear'])->name('cart.clear');
 
+Route::get('/checkout', [CheckoutController::class, 'index'])->name('checkout.index');
+Route::post('/checkout', [CheckoutController::class, 'process'])->name('checkout.process');
+Route::get('/order-success', function () {
+    return view('order-success');
+})->name('order.success');
 
 
 

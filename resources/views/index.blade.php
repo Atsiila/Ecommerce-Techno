@@ -249,7 +249,7 @@
     
                         <div class="banner-content banner-content-center">
                             <h3 class="banner-title text-white"><a href="/produk_detail/{{$data->id}}">{{ $data->name }}</a></h3><!-- End .banner-title -->
-                            <a href="/produk_detail/{{$data->id}}" class="btn btn-outline-white banner-link">Shop Now<i class="icon-long-arrow-right"></i></a>
+                            <a href="{{url('shop')}}" class="btn btn-outline-white banner-link">Shop Now<i class="icon-long-arrow-right"></i></a>
                         </div><!-- End .banner-content -->
                     </div><!-- End .banner -->
                 </div>
