@@ -11,55 +11,56 @@
         <div class="row">
             <div class="col-lg-8">
                 <div class="intro-slider-container slider-container-ratio slider-container-1 mb-2 mb-lg-0">
-                    @if($produk->isNotEmpty())
-                    <div class="intro-slider intro-slider-1 owl-carousel owl-simple owl-light owl-nav-inside" data-toggle="owl" data-owl-options='{
-                            "nav": false, 
-                            "responsive": {
-                                "768": {
-                                    "nav": true
+                    @if($produk->isNotEmpty(1))
+                        <div class="intro-slider intro-slider-1 owl-carousel owl-simple owl-light owl-nav-inside" data-toggle="owl" data-owl-options='{
+                                "nav": false, 
+                                "responsive": {
+                                    "768": {
+                                        "nav": true
+                                    }
                                 }
-                            }
-                        }'>
-                        @php
-                            $maxSlides = 3;
-                            $counter = 0;
-                        @endphp
-
-                        @foreach ($produk as $data)
-                            @if ($counter < $maxSlides)
-                                <div class="intro-slide">
-                                    <figure class="slide-image">
-                                        <picture>
-                                            <source media="(max-width: 480px)" srcset="{{ asset('/storage/produk/' . $data->image) }}">
-                                            <img src="{{ asset('/storage/produk/' . $data->image) }}" alt="Image Desc">
-                                        </picture>
-                                    </figure><!-- End .slide-image -->
-
-                                    <div class="intro-content">
-                                        <h3 class="intro-subtitle">{{ $data->name }}</h3><!-- End .h3 intro-subtitle -->
-                                        <h1 class="intro-title">{{ $data->name }}<br></h1><!-- End .intro-title -->
-
-                                        <a href="{{url('shop')}}" class="btn btn-outline-white">
-                                            <span>SHOP NOW</span>
-                                            <i class="icon-long-arrow-right"></i>
-                                        </a>
-                                    </div><!-- End .intro-content -->
-                                </div><!-- End .intro-slide -->
-
-                                @php
-                                    $counter++;
-                                @endphp
-                            @else
-                                @break
-                            @endif
-                        @endforeach
-                    </div><!-- End .intro-slider owl-carousel owl-simple -->
-                    
-                    <span class="slider-loader"></span><!-- End .slider-loader -->
+                            }'>
+                            @php
+                                $maxSlides = 3;
+                                $counter = 0;
+                            @endphp
+                
+                            @foreach ($produk as $data)
+                                @if ($counter < $maxSlides)
+                                    <div class="intro-slide">
+                                        <figure class="slide-image">
+                                            <picture>
+                                                <source media="(max-width: 480px)" srcset="{{ asset('/storage/produk/' . $data->image) }}">
+                                                <img src="{{ asset('/storage/produk/' . $data->image) }}" alt="Image Desc">
+                                            </picture>
+                                        </figure><!-- End .slide-image -->
+                
+                                        <div class="intro-content">
+                                            <h3 class="intro-subtitle">{{ $data->name }}</h3><!-- End .h3 intro-subtitle -->
+                                            <h1 class="intro-title">{{ $data->name }}<br></h1><!-- End .intro-title -->
+                
+                                            <a href="{{ url('shop') }}" class="btn btn-outline-white">
+                                                <span>SHOP NOW</span>
+                                                <i class="icon-long-arrow-right"></i>
+                                            </a>
+                                        </div><!-- End .intro-content -->
+                                    </div><!-- End .intro-slide -->
+                
+                                    @php
+                                        $counter++;
+                                    @endphp
+                                @else
+                                    @break
+                                @endif
+                            @endforeach
+                        </div><!-- End .intro-slider owl-carousel owl-simple -->
+                        
+                        <span class="slider-loader"></span><!-- End .slider-loader -->
                     @else
                         <p>No products available.</p>
                     @endif
-                </div><!-- End .intro-slider-container -->
+                </div>
+                <!-- End .intro-slider-container -->
             </div><!-- End .col-lg-8 -->
 
             <div class="col-lg-4">

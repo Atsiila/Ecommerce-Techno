@@ -67,16 +67,7 @@
                                 </div><!-- End .megamenu megamenu-md -->
                             </li>
                             
-                            <li>
-                                <a href="#" class="sf-with-ul">Pages</a>
-
-                                <ul>
-                                    
-                                    
-                                    <li><a href="{{ url('login') }}">Login</a></li>
-                                    
-                                </ul>
-                            </li>
+                           
                             
                             
                         </ul><!-- End .menu -->
@@ -94,14 +85,8 @@
                         </form>
                     </div><!-- End .header-search -->
 
-                    <div class="dropdown cart-dropdown">
-                        <a href="#" class="dropdown-toggle" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" data-display="static">
-                            <i class="icon-shopping-cart"></i>
-                            <span class="cart-count"></span>
-                        </a>
-
-                        <!-- End .dropdown-menu -->
-                    </div>
+                   
+                    
                     <div class="dropdown">
                         <button class="dropdown-toggle header-meta__btn no-border" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                             <i class="fal fa-user"></i> <!-- Replace with your logo or user icon -->
@@ -128,7 +113,13 @@
                                 </form>
                             @endguest
                         </div>
-                    </div><!-- End .cart-dropdown -->
+                    </div>
+                    <div class="dropdown cart-dropdown">
+                        <a href="{{ url('cart') }}" role="button">
+                            <i class="icon-shopping-cart" style="font-size: 24px;"></i> <!-- Adjust the size as needed -->
+                        </a>
+                    </div>
+                    <!-- End .cart-dropdown -->
                 </div>
                 <!-- End .header-right -->
             </div><!-- End .container -->

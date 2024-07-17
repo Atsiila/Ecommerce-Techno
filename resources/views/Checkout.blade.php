@@ -4,54 +4,69 @@
 <div class="page-content">
     <div class="checkout">
         <div class="container">
-            <div class="row">
-                <div class="col-lg-9">
-                    <h2 class="checkout-title">Detail Pembelian</h2><!-- End .checkout-title -->
+            <form action="{{ route('checkout.placeOrder') }}" method="POST">
+                @csrf
+                <div class="row">
+                    <div class="col-lg-9">
+                        <h2 class="checkout-title">Billing Details</h2>
 
-                    <form action="{{ route('checkout.process') }}" method="POST">
-                        @csrf
                         <div class="row">
                             <div class="col-sm-6">
-                                <label>Nama</label>
-                                <input type="text" class="form-control" name="name" required>
-                            </div><!-- End .col-sm-6 -->
+                                <label>First Name *</label>
+                                <input type="text" class="form-control" name="first_name" required>
+                            </div>
 
                             <div class="col-sm-6">
-                                <label>Email</label>
-                                <input type="email" class="form-control" name="email" required>
-                            </div><!-- End .col-sm-6 -->
-                        </div><!-- End .row -->
+                                <label>Last Name *</label>
+                                <input type="text" class="form-control" name="last_name" required>
+                            </div>
+                        </div>
 
-                        <label>Alamat</label>
-                        <input type="text" class="form-control" name="address" required>
+                        <label>Email address *</label>
+                        <input type="email" class="form-control" name="email" required>
 
-                        <label>Telepon</label>
+                        <label>Phone *</label>
                         <input type="tel" class="form-control" name="phone" required>
 
-                        <div class="cart-summary">
-                            <h3>Total Pembayaran</h3>
+                        <label>Address *</label>
+                        <input type="text" class="form-control" name="address" required>
+                    </div>
+
+                    <aside class="col-lg-3">
+                        <div class="summary">
+                            <h3 class="summary-title">Your Order</h3>
 
                             <table class="table table-summary">
+                                <thead>
+                                    <tr>
+                                        <th>Product</th>
+                                        <th>Total</th>
+                                    </tr>
+                                </thead>
+
                                 <tbody>
+                                    @foreach($keranjangItem as $item)
+                                    <tr>
+                                        <td>{{ $item->produk->name }}</td>
+                                        <td>@rupiah($item->produk->harga * $item->qty)</td>
+                                        <input type="hidden" name="id_produk[]" value="{{ $item->produk->id_produk }}">
+                                        <input type="hidden" name="prices[]" value="{{ $item->produk->harga }}">
+                                        <input type="hidden" name="quantities[]" value="{{ $item->qty }}">
+                                    </tr>
+                                    @endforeach
                                     <tr class="summary-total">
                                         <td>Total:</td>
-                                        <td>
-                                            @if ($keranjangItems && !$keranjangItems->isEmpty())
-                                                @rupiah($keranjangItems->sum(function($item) { return $item->produk->harga * $item->qty; }))
-                                            @else
-                                                Rp 0 <!-- Atau nilai default lainnya -->
-                                            @endif
-                                        </td>
-                                    </tr><!-- End .summary-total -->
+                                        <td>@rupiah($keranjangItem->sum(function($item) { return $item->produk->harga * $item->qty; }))</td>
+                                    </tr>
                                 </tbody>
-                            </table><!-- End .table table-summary -->
+                            </table>
 
-                            <button type="submit" class="btn btn-outline-primary-2 btn-order btn-block">PROSES PEMBAYARAN</button>
-                        </div><!-- End .cart-summary -->
-                    </form>
-                </div><!-- End .col-lg-9 -->
-            </div><!-- End .row -->
-        </div><!-- End .container -->
-    </div><!-- End .checkout -->
-</div><!-- End .page-content -->
+                            <button type="submit" class="btn btn-outline-primary-2 btn-order btn-block">PLACE ORDER</button>
+                        </div>
+                    </aside>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
 @endsection

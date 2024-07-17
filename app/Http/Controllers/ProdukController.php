@@ -17,6 +17,15 @@ class ProdukController extends Controller
         $produk = Produk::latest()->paginate(5);
         return view('admin.produk.index', compact('produk'));
     }
+    public function loadMoreProducts(Request $request)
+    {
+        $offset = $request->input('offset', 0);
+        $limit = 12; // Sesuaikan sesuai kebutuhan
+
+        $produk = Produk::skip($offset)->take($limit)->get();
+
+        return response()->json($produks);
+    }
 
     /**
      * Menampilkan formulir untuk membuat resource baru.
@@ -120,7 +129,7 @@ class ProdukController extends Controller
      */
     public function destroy(Produk $produk)
     {
-        // delete the product's image
+        // delete the produk's image
         Storage::delete('public/produk/' . $produk->image);
         
         $produk->delete();
